@@ -1,0 +1,28 @@
+{
+  "name": "jquery-crudlistin",
+  "homepage": "https://github.com/improvein/jquery-crudlistin",
+  "description": "jQuery plugin to enable dynamic CRUD list to add/remove/edit elements in a dynamic list and/or table.",
+  "main": [
+    "dist/jquery.crudlistin.min.js"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.1"
+  },
+  "keywords": [
+    "jquery",
+    "crud",
+    "list",
+    "dynamic"
+  ],
+  "authors": [
+    "Improve-in (http://www.improvein.com)"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
