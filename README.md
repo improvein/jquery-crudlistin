@@ -40,6 +40,7 @@ $('.crud-listin').crudlistin({
 - removeButtonSelector: selector to identify the "Remove" button.
 - newItemLast: indicates whether add new items at the end of the list (*true*) or at the beginning (*false*)
 - itemIndexPlaceholder: placeholder, inside the prototype, where the list index should be. It will be replaced by the index number for the corresponding element when adding
+
 ### Events
 - beforeAddElement: fires before adding the element. Return *false* to cancel.
 - afterAddElement: fires after adding the element.
