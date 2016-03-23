@@ -1,6 +1,6 @@
 /*! jQuery CRUD Listin - v1.0.0 - 2016-03-16
-* https://github.com/improvein/jquery-crudlistin
-* Improve-in */
+ * https://github.com/improvein/jquery-crudlistin
+ * Improve-in */
 
 (function ($) {
 
@@ -11,17 +11,17 @@
             return this.each(function (index, element) {
                 crudList = $(element);
 
-				/*
-                if (settings.newButton === null) {
-                    var newButton = $('<a></a>')
-                            .attr('href', '#')
-                            .addClass('btn btn-default new-item-btn')
-                            .append($('<i></i>').addClass('fa fa-plus'));
-                    crudList.append(newButton);
-
-                    settings.newButton = newButton;
-                }
-				*/
+                /*
+                 if (settings.newButton === null) {
+                 var newButton = $('<a></a>')
+                 .attr('href', '#')
+                 .addClass('btn btn-default new-item-btn')
+                 .append($('<i></i>').addClass('fa fa-plus'));
+                 crudList.append(newButton);
+                 
+                 settings.newButton = newButton;
+                 }
+                 */
 
                 // count the current form inputs we have (e.g. 2), use that as the new
                 // index when inserting a new item (e.g. 2)
@@ -31,11 +31,11 @@
                 settings.newButton.click(function (e) {
                     //var currentCList = $(this).closest(settings.listSelector);
                     //addNew(currentCList);
-					
-					addNew(crudList, settings.newItemLast, settings);						
+
+                    addNew(crudList, settings.newItemLast, settings);
                     return false;
                 });
-                
+
                 //click on the "Delete" button
                 prepareDeleteButton(crudList.find(settings.removeButtonSelector), settings);
             });
@@ -60,26 +60,27 @@
         }
     };
     //---- Default settings
-	$.fn.crudlistin.defaults = {
-		listSelector: '.crud-listin',
-		newButton: null,
-		removeButtonSelector: '.delete-item-btn',
-		newItemLast: true,
-		itemIndexPlaceholder: /__name__/g,
-		beforeAddElement: function() {},
-		afterAddElement: function() {},
-		beforeRemoveElement: function() {},
-		afterRemoveElement: function() {}
-	};
+    $.fn.crudlistin.defaults = {
+        listSelector: '.crud-listin',
+        newButton: null,
+        removeButtonSelector: '.delete-item-btn',
+        newItemLast: true,
+        itemIndexPlaceholder: /__name__/g,
+        beforeAddElement: function () {},
+        afterAddElement: function (newItem) {},
+        beforeRemoveElement: function () {},
+        afterRemoveElement: function () {}
+    };
 
 
     //---- Auxiliar internal methods
     function addNew(crudList, newItemLast, settings) {
-		//Event: before add
-		var beforeAddResult = true;
-		beforeAddResult = settings.beforeAddElement.call();
-		if(beforeAddResult === false) return;
-					
+        //Event: before add
+        var beforeAddResult = true;
+        beforeAddResult = settings.beforeAddElement.call();
+        if (beforeAddResult === false)
+            return;
+
         // Get the data-prototype explained earlier
         var prototype = crudList.data('prototype');
         // get the new index
@@ -88,7 +89,7 @@
         // Replace '__name__' in the prototype's HTML to
         // instead be a number based on how many items we have
         //var newForm = prototype.replace(/__name__/g, index);
-		var newForm = prototype.replace(settings.itemIndexPlaceholder, index);
+        var newForm = prototype.replace(settings.itemIndexPlaceholder, index);
 
         // increase the index with one for the next item
         crudList.data('index', index + 1);
@@ -98,9 +99,9 @@
         var newItem = $(newForm);
 
         /* // add a delete link to the new form (if it not exist)
-        if (newItem.find('.delete-item-btn').length == 0) {
-            newItem.append('<a href="#" class="delete-item-btn">x</a>');
-        }*/
+         if (newItem.find('.delete-item-btn').length == 0) {
+         newItem.append('<a href="#" class="delete-item-btn">x</a>');
+         }*/
 
         if (newItemLast) {
             crudList.append(newItem);
@@ -110,26 +111,26 @@
 
         // handle the removal
         prepareDeleteButton(newItem.find('.delete-item-btn'), settings);
-		
-		//Event: after add
-		settings.afterAddElement.call();
+
+        //Event: after add
+        settings.afterAddElement.call(crudList, newItem);
     }
 
     function prepareDeleteButton(button, settings) {
         $(button).click(function (e) {
             e.preventDefault();
-			
-			//Event: before remove
-			var beforeRemoveResult = true;
-			beforeRemoveResult = settings.beforeRemoveElement.call();
-			if(beforeRemoveResult !== false) {
-				//do remove
-				$(this).closest('.crud-item').remove();
-			}
-			
-			//Event: after remove
-			settings.afterRemoveElement.call();
-			
+
+            //Event: before remove
+            var beforeRemoveResult = true;
+            beforeRemoveResult = settings.beforeRemoveElement.call();
+            if (beforeRemoveResult !== false) {
+                //do remove
+                $(this).closest('.crud-item').remove();
+            }
+
+            //Event: after remove
+            settings.afterRemoveElement.call();
+
             return false;
         });
     }
