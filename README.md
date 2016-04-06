@@ -29,7 +29,7 @@ $('.crud-listin').crudlistin({
   newItemLast: true,
   itemIndexPlaceholder: /__name__/g,
   beforeAddElement: function() {},
-  afterAddElement: function() {},
+  afterAddElement: function(newItem) {},
   beforeRemoveElement: function() {},
   afterRemoveElement: function() {}
 });
@@ -43,6 +43,6 @@ $('.crud-listin').crudlistin({
 
 ### Events
 - beforeAddElement: fires before adding the element. Return *false* to cancel.
-- afterAddElement: fires after adding the element.
+- afterAddElement: fires after adding the element. *newItem* is the item being added.
 - beforeRemoveElement: fires before removing the element. Return *false* to cancel.
 - afterRemoveElement: fires after removing the element.
