@@ -1,4 +1,4 @@
-/*! jQuery CRUD Listin - v1.0.0 - 2016-03-16
+/*! jQuery CRUD Listin - v1.2.0 - 2016-04-06
  * https://github.com/improvein/jquery-crudlistin
  * Improve-in */
 
@@ -9,7 +9,7 @@
             var settings = $.extend($.fn.crudlistin.defaults, options);
 
             return this.each(function (index, element) {
-                crudList = $(element);
+                var crudList = $(element);
 
                 /*
                  if (settings.newButton === null) {
@@ -30,8 +30,7 @@
                 //click on the "New" button
                 settings.newButton.click(function (e) {
                     //var currentCList = $(this).closest(settings.listSelector);
-                    //addNew(currentCList);
-
+                    //addNew(crudList, settings.newItemLast, settings);
                     addNew(crudList, settings.newItemLast, settings);
                     return false;
                 });
@@ -42,7 +41,7 @@
         },
         addnew: function () {
             return this.each(function (index, element) {
-                crudList = $(element);
+                var crudList = $(element);
                 addNew(crudList, settings.newItemLast, settings);
             });
         } // add new element
@@ -61,10 +60,10 @@
     };
     //---- Default settings
     $.fn.crudlistin.defaults = {
-        listSelector: '.crud-listin',
         newButton: null,
         removeButtonSelector: '.delete-item-btn',
         newItemLast: true,
+        itemClass: 'crud-item',
         itemIndexPlaceholder: /__name__/g,
         beforeAddElement: function () {},
         afterAddElement: function (newItem) {},
@@ -110,7 +109,7 @@
         }
 
         // handle the removal
-        prepareDeleteButton(newItem.find('.delete-item-btn'), settings);
+        prepareDeleteButton(newItem.find(settings.removeButtonSelector), settings);
 
         //Event: after add
         settings.afterAddElement.call(crudList, newItem);
@@ -125,7 +124,7 @@
             beforeRemoveResult = settings.beforeRemoveElement.call();
             if (beforeRemoveResult !== false) {
                 //do remove
-                $(this).closest('.crud-item').remove();
+                $(this).closest('.' + settings.itemClass.replace(' ', '.')).remove();
             }
 
             //Event: after remove
