@@ -67,7 +67,7 @@
         itemIndexPlaceholder: /__name__/g,
         beforeAddElement: function () {},
         afterAddElement: function (newItem) {},
-        beforeRemoveElement: function () {},
+        beforeRemoveElement: function (item) {},
         afterRemoveElement: function () {}
     };
 
@@ -119,12 +119,14 @@
         $(button).click(function (e) {
             e.preventDefault();
 
+			var item = $(this).closest('.' + settings.itemClass.replace(' ', '.'));
+			
             //Event: before remove
             var beforeRemoveResult = true;
-            beforeRemoveResult = settings.beforeRemoveElement.call();
+            beforeRemoveResult = settings.beforeRemoveElement.call(crudList, item);
             if (beforeRemoveResult !== false) {
                 //do remove
-                $(this).closest('.' + settings.itemClass.replace(' ', '.')).remove();
+                item.remove();
             }
 
             //Event: after remove
