@@ -1,4 +1,4 @@
-/*! jQuery CRUD Listin - v1.2.0 - 2016-04-06
+/*! jQuery CRUD Listin - v1.2.4 - 2016-06-03
  * https://github.com/improvein/jquery-crudlistin
  * Improve-in */
 
