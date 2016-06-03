@@ -1,4 +1,4 @@
-/*! jQuery CRUD Listin - v1.2.4 - 2016-06-03
+/*! jQuery CRUD Listin - v1.2.5 - 2016-06-03
  * https://github.com/improvein/jquery-crudlistin
  * Improve-in */
 
@@ -36,7 +36,7 @@
                 });
 
                 //click on the "Delete" button
-                prepareDeleteButton(crudList.find(settings.removeButtonSelector), settings);
+                prepareDeleteButton(crudList, crudList.find(settings.removeButtonSelector), settings);
             });
         },
         addnew: function () {
@@ -109,13 +109,13 @@
         }
 
         // handle the removal
-        prepareDeleteButton(newItem.find(settings.removeButtonSelector), settings);
+        prepareDeleteButton(crudList, newItem.find(settings.removeButtonSelector), settings);
 
         //Event: after add
         settings.afterAddElement.call(crudList, newItem);
     }
 
-    function prepareDeleteButton(button, settings) {
+    function prepareDeleteButton(crudList, button, settings) {
         $(button).click(function (e) {
             e.preventDefault();
 
