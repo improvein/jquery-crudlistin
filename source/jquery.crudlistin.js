@@ -1,4 +1,4 @@
-/*! jQuery CRUD Listin - v1.2.5 - 2016-06-03
+/*! jQuery CRUD Listin - v1.2.6 - 2016-10-25
  * https://github.com/improvein/jquery-crudlistin
  * Improve-in */
 
@@ -10,39 +10,30 @@
 
             return this.each(function (index, element) {
                 var crudList = $(element);
-
-                /*
-                 if (settings.newButton === null) {
-                 var newButton = $('<a></a>')
-                 .attr('href', '#')
-                 .addClass('btn btn-default new-item-btn')
-                 .append($('<i></i>').addClass('fa fa-plus'));
-                 crudList.append(newButton);
-                 
-                 settings.newButton = newButton;
-                 }
-                 */
+                //save current settings
+                var currentSettings = $.extend($.fn.crudlistin.defaults, options);
+                currentSettings = jQuery.extend(true, {}, currentSettings);;
+                crudList.data('crudlisting_settings', currentSettings);
 
                 // count the current form inputs we have (e.g. 2), use that as the new
                 // index when inserting a new item (e.g. 2)
                 crudList.data('index', crudList.find('.crud-item').length);
 
                 //click on the "New" button
-                settings.newButton.click(function (e) {
-                    //var currentCList = $(this).closest(settings.listSelector);
-                    //addNew(crudList, settings.newItemLast, settings);
-                    addNew(crudList, settings.newItemLast, settings);
+                currentSettings.newButton.click(function (e) {
+                    addNew(crudList, currentSettings.newItemLast, currentSettings);
                     return false;
                 });
 
                 //click on the "Delete" button
-                prepareDeleteButton(crudList, crudList.find(settings.removeButtonSelector), settings);
+                prepareDeleteButton(crudList, crudList.find(currentSettings.removeButtonSelector), currentSettings);
             });
         },
         addnew: function () {
             return this.each(function (index, element) {
                 var crudList = $(element);
-                addNew(crudList, settings.newItemLast, settings);
+		var currentSettings = crudList.data('crudlisting_settings');
+                addNew(crudList, currentSettings.newItemLast, currentSettings);
             });
         } // add new element
     };
@@ -76,7 +67,7 @@
     function addNew(crudList, newItemLast, settings) {
         //Event: before add
         var beforeAddResult = true;
-        beforeAddResult = settings.beforeAddElement.call();
+        beforeAddResult = settings.beforeAddElement.call(crudList);
         if (beforeAddResult === false)
             return;
 
@@ -119,7 +110,7 @@
         $(button).click(function (e) {
             e.preventDefault();
 
-			var item = $(this).closest('.' + settings.itemClass.replace(' ', '.'));
+            var item = $(this).closest('.' + settings.itemClass.replace(' ', '.'));
 			
             //Event: before remove
             var beforeRemoveResult = true;
@@ -130,7 +121,7 @@
             }
 
             //Event: after remove
-            settings.afterRemoveElement.call();
+            settings.afterRemoveElement.call(crudList);
 
             return false;
         });
