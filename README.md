@@ -14,11 +14,25 @@ $ bower install jquery-crudlistin
 Just copy the file from "dist" into your project
 
 ## How to use
-This is how you activate the plugin, providing that your list container element has the class *.crud-listin*:
+This is how you activate and use the plugin:
 ```javascript
 $('.crud-listin').crudlistin({
   newButton: $('#list-add-btn')
 });
+```
+Corresponding HTML (you need to have a *data-prototype* attribute in the main list element):
+```html
+<a href="#" id="list-add-btn">Add element</a>
+<div class="crud-listin" data-prototype="&lt;div class=&quot;crud-item&quot;&gt;This is element number __name__ &lt;a href=&quot;#&quot; class=&quot;delete-item-btn&quot;&gt;Remove&lt;/a&gt;&lt;/div&gt;">
+</div>
+```
+How it will look after adding two elements
+```html
+<a href="#" id="list-add-btn">Add element</a>
+<div class="crud-listin" data-prototype="&lt;div class=&quot;crud-item&quot;&gt;This is element number __name__ &lt;a href=&quot;#&quot; class=&quot;delete-item-btn&quot;&gt;Remove&lt;/a&gt;&lt;/div&gt;">
+  <div class="crud-item">This is element number 0 <a href="#" class="delete-item-btn">Remove</a></div>
+  <div class="crud-item">This is element number 1 <a href="#" class="delete-item-btn">Remove</a></div>
+</div>
 ```
 
 ## Options
