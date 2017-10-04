@@ -10,6 +10,12 @@ Run this command:
 $ bower install jquery-crudlistin
 ```
 
+### npm
+Run this command:
+```
+$ npm i jquery-crudlistin
+```
+
 ### Manual
 Just copy the file from "dist" into your project
 

@@ -1,0 +1,23 @@
+{
+  "name": "jquery-crudlistin",
+  "version": "1.2.6",
+  "description": "Lightweight jQuery plugin to enable dynamic CRUD list to add/remove/edit elements in a dynamic list and/or table.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/improvein/jquery-crudlistin.git"
+  },
+  "keywords": [
+    "jquery",
+    "crud",
+    "list"
+  ],
+  "author": "Improve-in",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/improvein/jquery-crudlistin/issues"
+  },
+  "homepage": "https://github.com/improvein/jquery-crudlistin#readme"
+}
