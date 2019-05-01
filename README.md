@@ -1,6 +1,8 @@
 # jQuery CRUDListin
 
-Lightweight jQuery plugin to enable dynamic CRUD list to add/remove/edit elements in a dynamic list and/or table.
+Lightweight jQuery plugin to enable dynamic CRUD list to add/remove/edit elements in a dynamic list and/or table. It is super simple and style (CSS) agnostic.
+
+[![npm version](https://badge.fury.io/js/jquery-crudlistin.svg)](https://badge.fury.io/js/jquery-crudlistin)
 
 ## Install
 
