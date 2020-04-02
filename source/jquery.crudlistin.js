@@ -17,7 +17,7 @@
 
                 // count the current form inputs we have (e.g. 2), use that as the new
                 // index when inserting a new item (e.g. 2)
-                crudList.data('index', crudList.find('.crud-item').length);
+                crudList.data('index', crudList.find('.'+currentSettings.itemClass).length);
 
                 //click on the "New" button
                 currentSettings.newButton.click(function (e) {
